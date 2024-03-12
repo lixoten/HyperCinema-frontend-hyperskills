@@ -1,5 +1,5 @@
 <!doctype html>
-<!--Stage 2-->
+<!--Stage 3-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -146,12 +146,10 @@
             border: 1px solid rgba(130, 45, 180, 1);
             color: #822DB4FF;
         }
-
         button:hover{
             background: rgba(130, 45, 180, 1);
             color: rgb(242, 235, 255);
         }
-
         #trailerButton {
             position: absolute;
             top: 583px;
@@ -160,7 +158,6 @@
             height: 50px;
             border-radius: 8px;
         }
-
         #reviewsButton {
             position: absolute;
             top: 583px;
@@ -168,6 +165,51 @@
             width: 180px;
             height: 50px;
             border-radius: 8px;
+        }
+
+        .section-header {
+            position: absolute;
+            width: 109px;
+            height: 39px;
+            top: 786px;
+            left: 90px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 39px;
+            letter-spacing: 0;
+            text-align: left;
+        }
+
+        #actors-list {
+            position: absolute;
+            width: 1259px;
+            height: 251px;
+            top: 865px;
+            left: 90px;
+
+            display: flex;
+            justify-content: space-between;
+        }
+        .actor {
+            width: 149px;
+            height: 251px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 1);
+        }
+        .actor div {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 18px;
+            letter-spacing: 0;
+            text-align: left;
+        }
+        .actor img {
+            /* test script bug */
+            /*width: 149px;*/
+            width: 147px;
+            height: 209px;
+            border-radius: 10px 10px 0 0;
         }
     </style>
 </head>
@@ -179,45 +221,78 @@
     </nav>
 </header>
 <main>
-    <section id="movie">
-        <video controls
-               src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c0/Big_Buck_Bunny_4K.webm/Big_Buck_Bunny_4K.webm.720p.vp9.webm"
-               poster="https://upload.wikimedia.org/wikipedia/en/7/7b/Shrek_%282001_animated_feature_film%29.jpg">
-        </video>
+    <section>
+        <section id="movie-trailer">
+            <video controls
+                   src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c0/Big_Buck_Bunny_4K.webm/Big_Buck_Bunny_4K.webm.720p.vp9.webm"
+                   poster="https://upload.wikimedia.org/wikipedia/en/7/7b/Shrek_%282001_animated_feature_film%29.jpg">
+            </video>
+        </section>
+        <section id="movie-information">
+            <div id="movie-title">
+                <h2 class="name">Shrek</h2>
+                <p class="rating">6+</p>
+            </div>
+            <p class="sub-info">2001, USA, 1h 30m</p>
+            <p class="description">A mean lord exiles
+                fairytale creatures to the swamp of a grumpy ogre,
+                who must go on a quest and rescue a princess for the lord in order to get his land back.</p>
+            <table>
+                <tr>
+                    <th>Directors</th>
+                    <td>Andrew Adamson, Vicky Jenson</td>
+                </tr>
+                <tr>
+                    <th>Genres</th>
+                    <td>Animation, Adventure, Comedy</td>
+                </tr>
+                <tr>
+                    <th>IMDB</th>
+                    <td>7.9</td>
+                </tr>
+                <tr>
+                    <th>Kinopoisk</th>
+                    <td>8.2</td>
+                </tr>
+            </table>
+
+            <div id="buttons">
+                <button id="trailerButton">Trailer</button>
+                <button id="reviewsButton">Reviews</button>
+            </div>
+        </section>
     </section>
-    <section id="movie-information">
-        <div id="movie-title">
-            <h2 class="name">Shrek</h2>
-            <p class="rating">6+</p>
-        </div>
-        <p class="sub-info">2001, USA, 1h 30m</p>
-        <p class="description">A mean lord exiles
-            fairytale creatures to the swamp of a grumpy ogre,
-            who must go on a quest and rescue a princess for the lord in order to get his land back.</p>
-        <table>
-            <tr>
-                <th>Directors</th>
-                <td>Andrew Adamson, Vicky Jenson</td>
-            </tr>
-            <tr>
-                <th>Genres</th>
-                <td>Animation, Adventure, Comedy</td>
-            </tr>
-            <tr>
-                <th>IMDB</th>
-                <td>7.9</td>
-            </tr>
-            <tr>
-                <th>Kinopoisk</th>
-                <td>8.2</td>
-            </tr>
-        </table>
 
-        <div id="buttons">
-            <button id="trailerButton">Trailer</button>
-            <button id="reviewsButton">Reviews</button>
-        </div>
-
+    <p class="section-header">Actors</p>
+    <section id="actors-list">
+        <article class="actor">
+            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fb%2Fpeople%2Fba57352a5fa32247b05dffaf78176ffe.jpg" alt="Mike Myers"/>
+            <div>Mike Myers</div>
+        </article>
+        <article class="actor">
+            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fc%2Fpeople%2Fc7015e54fa689729e760f6a4a22371fc.jpg" alt="Eddie Murphy"/>
+            <div>Eddie Murphy</div>
+        </article>
+        <article class="actor">
+            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fe%2Fpeople%2Feab3aac9a8d36411f212e7198a9002fb.jpg" alt="Cameron Diaz"/>
+            <div>Cameron Diaz</div>
+        </article>
+        <article class="actor">
+            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fb%2Fpeople%2Fb292e69219a0b229ec0f9420fa0ed99f.jpg" alt="John Lithgow"/>
+            <div>John Lithgow</div>
+        </article>
+        <article class="actor">
+            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2F4%2Fpeople%2F4f7e3e6c34901015f15084a488ed0e03.jpg" alt="Vincent Cassel"/>
+            <div>Vincent Cassel</div>
+        </article>
+        <article class="actor">
+            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2F6%2Fpeople%2F6e9cf55307bf27c7ca64eaf28b994947.jpg" alt="Peter Dennis"/>
+            <div>Peter Dennis</div>
+        </article>
+        <article class="actor">
+            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2F5%2Fpeople%2F5e22c3fe77846b68954f88ea384ddae7.jpg" alt="Clive Pearse"/>
+            <div>Clive Pearse</div>
+        </article>
     </section>
 
 

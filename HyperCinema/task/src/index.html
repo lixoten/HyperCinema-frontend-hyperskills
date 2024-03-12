@@ -1,10 +1,75 @@
 <!doctype html>
+<!--Stage 1-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>HyperCinema</title>
+    <meta name="description" content="Watch movies online">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            background-color: #F2EBFF;
+            color: #000;
+        }
+
+        #main-title {
+            position: absolute;
+            top: 20px;
+            left: 90px;
+            width: 123px;
+            height: 22px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        #login-button {
+            position: absolute;
+            top: 20px;
+            left: 1307px;
+            width: 43px;
+            height: 22px;
+
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.8;
+            line-height: 22px;
+        }
+
+        video {
+            position: absolute;
+            top: 134px;
+            left: 90px;
+            width: 828px;
+            height: 499px;
+
+            border: 1px solid #000;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-
+<header>
+    <h1 id="main-title">Hyper Cinema</h1>
+    <nav>
+        <div id="login-button">Login</div>
+    </nav>
+</header>
+<main>
+    <article id="movie">
+        <video controls
+               src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c0/Big_Buck_Bunny_4K.webm/Big_Buck_Bunny_4K.webm.720p.vp9.webm"
+               poster="https://upload.wikimedia.org/wikipedia/en/7/7b/Shrek_%282001_animated_feature_film%29.jpg">
+        </video>
+    </article>
+</main>
 </body>
 </html>

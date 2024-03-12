@@ -1,5 +1,5 @@
 <!doctype html>
-<!--Stage 3-->
+<!--Stage 4-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,6 +16,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
+            font-weight: 400;
             font-size: 16px;
 
             background-color: #F2EBFF;
@@ -52,8 +53,11 @@
             width: 828px;
             height: 499px;
 
-            border: 1px solid #000;
-            border-radius: 10px;
+            border-radius: 30px;
+
+            object-fit: cover;
+            padding:5px;
+            border: 5px double pink;"
         }
 
         .name {
@@ -73,10 +77,12 @@
         }
         .rating {
             position: absolute;
-            width: 44px;
-            height: 29px;
-            top: 154px;
+            /*width: 44px;*/
+            /*height: 29px;*/
+            top: 134px;
             left: 1097px;
+            padding: 5px;
+
             border-radius: 6px;
             border: 1px solid rgba(187, 184, 192, 1);
 
@@ -92,8 +98,6 @@
             position: absolute;
             top: 203px;
             left: 956px;
-            width: 124px;
-            height: 17px;
             opacity: 0.6;
 
             font-size: 14px;
@@ -105,7 +109,7 @@
 
         .description {
             position: absolute;
-            top: 250px;
+            top: 240px;
             left: 956px;
             width: 394px;
             height: 104px;
@@ -122,7 +126,7 @@
             position: absolute;
             /* test script bug */
             /*top: 384px;*/
-            top: 383px;
+            top: 410px;
             left: 955px;
 
             width: 350px;
@@ -136,6 +140,9 @@
         }
 
         button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-family: 'Inter', sans-serif;
             font-size: 16px;
             font-weight: 700;
@@ -167,6 +174,14 @@
             border-radius: 8px;
         }
 
+
+        .section-header:nth-of-type(2) {
+            top: 1269px;
+            left: 90px;
+            width: 139px;
+            height: 39px;
+        }
+
         .section-header {
             position: absolute;
             width: 109px;
@@ -192,17 +207,23 @@
             justify-content: space-between;
         }
         .actor {
+            display: flex;
+            flex-direction: column;
             width: 149px;
             height: 251px;
             border-radius: 10px;
             border: 1px solid rgba(0, 0, 0, 1);
         }
         .actor div {
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
             font-size: 15px;
             font-weight: 400;
+            width: 100%;
+            height: 100%;
             line-height: 18px;
             letter-spacing: 0;
-            text-align: left;
         }
         .actor img {
             /* test script bug */
@@ -211,6 +232,82 @@
             height: 209px;
             border-radius: 10px 10px 0 0;
         }
+
+        #reviews-list {
+            position: absolute;
+            top: 1348px;
+            left: 90px;
+            width: 936px;
+            height: 1288px;
+            border-radius: 10px;
+            border: 1px;
+
+            display: flex;
+            flex-direction: column;
+            gap:40px;
+        }
+
+        .review {
+            position: relative;
+            padding: 40px 40px 60px 40px;
+            border-radius: 10px;
+
+            display: flex;
+            flex-direction: column;
+            gap:20px;
+            height: auto;
+            border: 1px solid rgba(0, 0, 0, 1);
+        }
+        .date {
+            width: 89px;
+            height: 17px;
+
+            font-size: 14px;
+            font-weight: 300;
+            opacity: 0.6;
+            line-height: 17px;
+            letter-spacing: 0;
+            text-align: left;
+        }
+        .review h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .review p {
+            font-size: 18px;
+            line-height: 26px;
+        }
+        .grade {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -1px;
+            right: 40px;
+            width: 72px;
+            height: 93px;
+            /*border: 1px solid rgba(33, 33, 33, 1);*/
+            background-size: contain;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 29px;
+            letter-spacing: 0;
+        }
+
+        .grade span {
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .grade.positive {
+            background-image: url("/positive-review.png");
+        }
+
+        .grade.negative {
+            background-image: url("/negative-review.png");
+        }
+
+
     </style>
 </head>
 <body>
@@ -223,42 +320,43 @@
 <main>
     <section>
         <section id="movie-trailer">
-            <video controls
-                   src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c0/Big_Buck_Bunny_4K.webm/Big_Buck_Bunny_4K.webm.720p.vp9.webm"
-                   poster="https://upload.wikimedia.org/wikipedia/en/7/7b/Shrek_%282001_animated_feature_film%29.jpg">
+            <video controls autoplay
+                   src="https://youtu.be/Y1IgAEejvqM"
+                   poster="https://m.media-amazon.com/images/I/81gYWI757LL._AC_SL1500_.jpg">
             </video>
         </section>
         <section id="movie-information">
             <div id="movie-title">
-                <h2 class="name">Shrek</h2>
-                <p class="rating">6+</p>
+                <h2 class="name">Barbie</h2>
+                <p class="rating">PG-13</p>
             </div>
-            <p class="sub-info">2001, USA, 1h 30m</p>
-            <p class="description">A mean lord exiles
-                fairytale creatures to the swamp of a grumpy ogre,
-                who must go on a quest and rescue a princess for the lord in order to get his land back.</p>
+            <p class="sub-info">2023, USA, 1h 54m</p>
+            <p class="description">Barbie and Ken are having the time of their lives in
+                the colorful and seemingly perfect world of Barbie Land.
+                However, when they get a chance to go to the real world,
+                they soon discover the joys and perils of living among humans.</p>
             <table>
                 <tr>
                     <th>Directors</th>
-                    <td>Andrew Adamson, Vicky Jenson</td>
+                    <td>Greta Gerwig</td>
                 </tr>
                 <tr>
                     <th>Genres</th>
-                    <td>Animation, Adventure, Comedy</td>
+                    <td>Adventure, Comedy, Fantasy</td>
                 </tr>
                 <tr>
                     <th>IMDB</th>
-                    <td>7.9</td>
+                    <td>6.9</td>
                 </tr>
                 <tr>
                     <th>Kinopoisk</th>
-                    <td>8.2</td>
+                    <td>9.1</td>
                 </tr>
             </table>
 
             <div id="buttons">
                 <button id="trailerButton">Trailer</button>
-                <button id="reviewsButton">Reviews</button>
+                <button id="reviewsButton" onclick="location.href='#reviews'">Reviews</button>
             </div>
         </section>
     </section>
@@ -266,32 +364,67 @@
     <p class="section-header">Actors</p>
     <section id="actors-list">
         <article class="actor">
-            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fb%2Fpeople%2Fba57352a5fa32247b05dffaf78176ffe.jpg" alt="Mike Myers"/>
-            <div>Mike Myers</div>
+            <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/euDPyqLnuwaWMHajcU3oZ9uZezR.jpg" alt="Margot Robbie"/>
+            <div>Margot Robbie</div>
         </article>
         <article class="actor">
-            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fc%2Fpeople%2Fc7015e54fa689729e760f6a4a22371fc.jpg" alt="Eddie Murphy"/>
-            <div>Eddie Murphy</div>
+            <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/lyUyVARQKhGxaxy0FbPJCQRpiaW.jpg" alt="Ryan Gosling"/>
+            <div>Ryan Gosling</div>
         </article>
         <article class="actor">
-            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fe%2Fpeople%2Feab3aac9a8d36411f212e7198a9002fb.jpg" alt="Cameron Diaz"/>
-            <div>Cameron Diaz</div>
+            <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/7F84Lh2lKpvkM3EiOvqqvlOmw93.jpg" alt="America Ferrera"/>
+            <div>America Ferrera</div>
         </article>
         <article class="actor">
-            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2Fb%2Fpeople%2Fb292e69219a0b229ec0f9420fa0ed99f.jpg" alt="John Lithgow"/>
-            <div>John Lithgow</div>
+            <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/8xrCTYP8PuHixWzkiX6onJNfw8k.jpg" alt="Ariana Greenblatt"/>
+            <div>Ariana Greenblatt</div>
         </article>
         <article class="actor">
-            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2F4%2Fpeople%2F4f7e3e6c34901015f15084a488ed0e03.jpg" alt="Vincent Cassel"/>
-            <div>Vincent Cassel</div>
+            <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/1tX1T5ZNCMh2KYP1jMgfg8P26vm.jpg" alt="Issa Rae"/>
+            <div>Issa Rae</div>
         </article>
         <article class="actor">
-            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2F6%2Fpeople%2F6e9cf55307bf27c7ca64eaf28b994947.jpg" alt="Peter Dennis"/>
-            <div>Peter Dennis</div>
+            <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/2cNetzianFcxPQbyOQnkAIkKUZE.jpg" alt="Kate McKinnon"/>
+            <div>Kate McKinnon</div>
         </article>
         <article class="actor">
-            <img src="https://images.plex.tv/photo?size=medium-360&scale=2&url=https%3A%2F%2Fmetadata-static.plex.tv%2F5%2Fpeople%2F5e22c3fe77846b68954f88ea384ddae7.jpg" alt="Clive Pearse"/>
-            <div>Clive Pearse</div>
+            <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/4GOxIqnQXK5iGINdFDBlIQYa519.jpg" alt="Alexandra Shipp"/>
+            <div>Alexandra Shipp</div>
+        </article>
+    </section>
+
+
+    <p id="reviews" class="section-header">Reviews</p>
+    <section id="reviews-list">
+        <article id="first-review" class="review">
+            <div class="grade positive"><span>9/10</span></div>
+            <span class="date">21 December 2023</span>
+            <h1>Young at heartHth</h1>
+            <p>
+                For younger viewers, they might not understand the impact of "Shrek" on the film industry and CGI movies. However, being an older guy, I remember how groundbreaking and amazing the computer animation was when the film debuted. It was head and shoulders better than the few CGI movies that had come out in the previous decade...and it finally gave Pixar a serious run for the money. In addition, the plot was very adult...and the film's appeal was much greater than a typical CGI story. Great animation, great story telling and great voice acting, while the movie isn't quite impressive to see today, it still holds up very well and is well worth your time.
+
+                I could easily say more but this film has over a thousand reviews....so I'll just end it here!
+            </p>
+        </article>
+        <article class="review">
+            <div class="grade negative"><span>2/10</span></div>
+            <span class="date">25 December 2020</span>
+            <h1>Not for me</h1>
+            <p>
+                Barbie (Margot Robbie) travels from Barbieland to the real world where she learns to her surprise that men are in control...<br /><br />
+
+                I'm not a fan of this Barbie movie - regardless of whether I agree with its feminist message about the patriarchy or not, I just didn't find it funny and I didn't find it enjoyable. The humour was lame, I thought that the performances were weak (am I the only person who isn't a Margot Robbie fan?), and the songs were beyond awful.<br /><br />
+
+                About the only thing that I can commend about the film is its production design, but even that got on my nerves from time to time (the travelling to the real world from Barbieland on cardboard cut-outs -- sheesh!). Obviously, I'm in the minority for not liking this film, because it has a high rating and has made a mint at the box office, but I guess we can't all like the same things.
+            </p>
+        </article>
+        <article class="review">
+            <div class="grade positive"><span>8/10</span></div>
+            <span class="date">1 January 2024</span>
+            <h1>Wonderfully Done</h1>
+            <p>
+                Barbie is very entertaining and despite the apparent artificiality, it questions social mandates. Throughout the film, a successful sense of humor is maintained regarding the struggle of the sexes and its cultural implications, without being offensive.
+            </p>
         </article>
     </section>
 

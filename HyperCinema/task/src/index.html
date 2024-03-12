@@ -1,5 +1,5 @@
 <!doctype html>
-<!--Stage 1-->
+<!--Stage 2-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +17,7 @@
         body {
             font-family: 'Inter', sans-serif;
             font-size: 16px;
+
             background-color: #F2EBFF;
             color: #000;
         }
@@ -54,6 +55,120 @@
             border: 1px solid #000;
             border-radius: 10px;
         }
+
+        .name {
+            position: absolute;
+            top: 144px;
+            left: 955px;
+            width: 122px;
+            height: 49px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 49px;
+            letter-spacing: 0;
+            text-align: left;
+
+        }
+        .rating {
+            position: absolute;
+            width: 44px;
+            height: 29px;
+            top: 154px;
+            left: 1097px;
+            border-radius: 6px;
+            border: 1px solid rgba(187, 184, 192, 1);
+
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0;
+            text-align: left;
+
+        }
+        .sub-info {
+            position: absolute;
+            top: 203px;
+            left: 956px;
+            width: 124px;
+            height: 17px;
+            opacity: 0.6;
+
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 17px;
+            letter-spacing: 0;
+            text-align: left;
+        }
+
+        .description {
+            position: absolute;
+            top: 250px;
+            left: 956px;
+            width: 394px;
+            height: 104px;
+
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0;
+            text-align: left;
+
+        }
+
+        table {
+            position: absolute;
+            /* test script bug */
+            /*top: 384px;*/
+            top: 383px;
+            left: 955px;
+
+            width: 350px;
+            height: 151px;
+        }
+        th {
+            font-weight: 600;
+            line-height: 19px;
+            letter-spacing: 0;
+            text-align: left;
+        }
+
+        button {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 19px;
+            letter-spacing: 0;
+            text-align: left;
+
+            border: 1px solid rgba(130, 45, 180, 1);
+            color: #822DB4FF;
+        }
+
+        button:hover{
+            background: rgba(130, 45, 180, 1);
+            color: rgb(242, 235, 255);
+        }
+
+        #trailerButton {
+            position: absolute;
+            top: 583px;
+            left: 954px;
+            width: 180px;
+            height: 50px;
+            border-radius: 8px;
+        }
+
+        #reviewsButton {
+            position: absolute;
+            top: 583px;
+            left: 1170px;
+            width: 180px;
+            height: 50px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -64,12 +179,48 @@
     </nav>
 </header>
 <main>
-    <article id="movie">
+    <section id="movie">
         <video controls
                src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c0/Big_Buck_Bunny_4K.webm/Big_Buck_Bunny_4K.webm.720p.vp9.webm"
                poster="https://upload.wikimedia.org/wikipedia/en/7/7b/Shrek_%282001_animated_feature_film%29.jpg">
         </video>
-    </article>
+    </section>
+    <section id="movie-information">
+        <div id="movie-title">
+            <h2 class="name">Shrek</h2>
+            <p class="rating">6+</p>
+        </div>
+        <p class="sub-info">2001, USA, 1h 30m</p>
+        <p class="description">A mean lord exiles
+            fairytale creatures to the swamp of a grumpy ogre,
+            who must go on a quest and rescue a princess for the lord in order to get his land back.</p>
+        <table>
+            <tr>
+                <th>Directors</th>
+                <td>Andrew Adamson, Vicky Jenson</td>
+            </tr>
+            <tr>
+                <th>Genres</th>
+                <td>Animation, Adventure, Comedy</td>
+            </tr>
+            <tr>
+                <th>IMDB</th>
+                <td>7.9</td>
+            </tr>
+            <tr>
+                <th>Kinopoisk</th>
+                <td>8.2</td>
+            </tr>
+        </table>
+
+        <div id="buttons">
+            <button id="trailerButton">Trailer</button>
+            <button id="reviewsButton">Reviews</button>
+        </div>
+
+    </section>
+
+
 </main>
 </body>
 </html>

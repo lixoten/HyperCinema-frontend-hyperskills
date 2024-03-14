@@ -1,10 +1,11 @@
 <!doctype html>
-<!--Stage 4-->
+<!--Stage 5-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>HyperCinema</title>
-    <meta name="description" content="Watch movies online">
+    <meta name="description" content="Discover HyperCinema, an immersive experience where you become the hero of your own cinematic adventure. Choose your genre, influence your story, and step into a world where your choices come to life.">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
@@ -21,14 +22,15 @@
 
             background-color: #F2EBFF;
             color: #000;
+
+            width: 1440px;
+            height: 2776px;
         }
 
         #main-title {
             position: absolute;
             top: 20px;
             left: 90px;
-            width: 123px;
-            height: 22px;
             font-size: 18px;
             font-weight: 500;
         }
@@ -37,13 +39,10 @@
             position: absolute;
             top: 20px;
             left: 1307px;
-            width: 43px;
-            height: 22px;
 
             font-size: 16px;
             font-weight: 500;
             opacity: 0.8;
-            line-height: 22px;
         }
 
         video {
@@ -54,7 +53,6 @@
             height: 499px;
 
             border-radius: 30px;
-
             object-fit: cover;
             padding:5px;
             border: 5px double pink;"
@@ -64,21 +62,15 @@
             position: absolute;
             top: 144px;
             left: 955px;
-            width: 122px;
-            height: 49px;
 
             font-family: 'Montserrat', sans-serif;
             font-size: 40px;
             font-weight: 700;
-            line-height: 49px;
-            letter-spacing: 0;
             text-align: left;
 
         }
         .rating {
             position: absolute;
-            /*width: 44px;*/
-            /*height: 29px;*/
             top: 134px;
             left: 1097px;
             padding: 5px;
@@ -89,8 +81,6 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 20px;
             font-weight: 400;
-            line-height: 24px;
-            letter-spacing: 0;
             text-align: left;
 
         }
@@ -102,8 +92,6 @@
 
             font-size: 14px;
             font-weight: 300;
-            line-height: 17px;
-            letter-spacing: 0;
             text-align: left;
         }
 
@@ -111,95 +99,70 @@
             position: absolute;
             top: 240px;
             left: 956px;
-            width: 394px;
-            height: 104px;
+            max-width: 500px;
 
             font-size: 18px;
             font-weight: 400;
-            line-height: 26px;
-            letter-spacing: 0;
-            text-align: left;
-
         }
 
         table {
             position: absolute;
-            /* test script bug */
-            /*top: 384px;*/
             top: 410px;
             left: 955px;
-
             width: 350px;
             height: 151px;
         }
         th {
             font-weight: 600;
-            line-height: 19px;
-            letter-spacing: 0;
             text-align: left;
         }
 
         button {
+            position: absolute;
+            top: 583px;
+
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Inter', sans-serif;
             font-size: 16px;
             font-weight: 700;
-            line-height: 19px;
-            letter-spacing: 0;
             text-align: left;
 
+            width: 180px;
+            height: 50px;
+            border-radius: 8px;
             border: 1px solid rgba(130, 45, 180, 1);
             color: #822DB4FF;
         }
-        button:hover{
-            background: rgba(130, 45, 180, 1);
-            color: rgb(242, 235, 255);
-        }
         #trailerButton {
-            position: absolute;
-            top: 583px;
             left: 954px;
-            width: 180px;
-            height: 50px;
-            border-radius: 8px;
         }
         #reviewsButton {
-            position: absolute;
-            top: 583px;
             left: 1170px;
-            width: 180px;
-            height: 50px;
-            border-radius: 8px;
         }
 
-
-        .section-header:nth-of-type(2) {
-            top: 1269px;
-            left: 90px;
-            width: 139px;
-            height: 39px;
-        }
-
+        /** Section header for both Actors and Review List **/
         .section-header {
             position: absolute;
-            width: 109px;
-            height: 39px;
             top: 786px;
             left: 90px;
+            width: 109px;
+            /*height: 39px;*/
+
             font-family: 'Montserrat', sans-serif;
             font-size: 32px;
             font-weight: 700;
-            line-height: 39px;
-            letter-spacing: 0;
-            text-align: left;
+        }
+        .section-header:nth-of-type(2) {
+            top: 1269px;
+            left: 90px;
         }
 
+        /** Actors List Summary **/
         #actors-list {
             position: absolute;
             width: 1259px;
-            height: 251px;
             top: 865px;
             left: 90px;
 
@@ -209,10 +172,18 @@
         .actor {
             display: flex;
             flex-direction: column;
-            width: 149px;
+            /*width: 149px;*/
             height: 251px;
             border-radius: 10px;
             border: 1px solid rgba(0, 0, 0, 1);
+        }
+        #actors-list article:hover,
+        button:hover{
+            transition: all .3s;
+            transform: translate(10px, -10px);
+            box-shadow: -10px 10px #212121FF;
+            background: rgba(130, 45, 180, 1);
+            color: rgb(242, 235, 255);
         }
         .actor div {
             display: flex;
@@ -220,54 +191,50 @@
             padding-left: 10px;
             font-size: 15px;
             font-weight: 400;
-            width: 100%;
             height: 100%;
-            line-height: 18px;
-            letter-spacing: 0;
         }
         .actor img {
-            /* test script bug */
-            /*width: 149px;*/
-            width: 147px;
+            width: 149px;
             height: 209px;
             border-radius: 10px 10px 0 0;
         }
 
-        #reviews-list {
+        /** Container for Review List and Summary **/
+        #reviews-section {
             position: absolute;
             top: 1348px;
             left: 90px;
-            width: 936px;
-            height: 1288px;
-            border-radius: 10px;
-            border: 1px;
 
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+        /** Review List **/
+        #reviews-list  {
             display: flex;
             flex-direction: column;
             gap:40px;
         }
 
         .review {
-            position: relative;
-            padding: 40px 40px 60px 40px;
-            border-radius: 10px;
-
             display: flex;
             flex-direction: column;
-            gap:20px;
-            height: auto;
-            border: 1px solid rgba(0, 0, 0, 1);
+            gap:40px;
+
+            width: 936px;
+            border-radius: 10px;
+
+            padding: 40px;
+            border: 1px solid black;
+
+            /* needed to set review rating to absolute position */
+            position: relative;
         }
         .date {
-            width: 89px;
-            height: 17px;
-
             font-size: 14px;
             font-weight: 300;
             opacity: 0.6;
-            line-height: 17px;
-            letter-spacing: 0;
-            text-align: left;
         }
         .review h1 {
             font-size: 24px;
@@ -275,39 +242,70 @@
         }
         .review p {
             font-size: 18px;
-            line-height: 26px;
         }
         .grade {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             position: absolute;
             top: -1px;
             right: 40px;
+
+            display: flex;
+            justify-content: center;
+            padding-top: 1.5rem;
             width: 72px;
             height: 93px;
-            /*border: 1px solid rgba(33, 33, 33, 1);*/
             background-size: contain;
             font-size: 24px;
             font-weight: 500;
-            line-height: 29px;
-            letter-spacing: 0;
         }
-
         .grade span {
             font-size: 14px;
             font-weight: 300;
         }
-
         .grade.positive {
             background-image: url("/positive-review.png");
         }
-
         .grade.negative {
             background-image: url("/negative-review.png");
         }
 
+        /** Review Summary **/
+        .reviews-summary {
+            position: sticky;
+            top: 0;
+            height: 261px;
+            padding: 15px 0 0 15px;
 
+            border-left: solid 2px black;
+            min-width: 120px;
+
+            margin-left: 144px;
+        }
+        .reviews-number{
+            font-weight: 500;
+            font-size: 30px;
+        }
+        .score {
+            height: 87px;
+        }
+        .caption {
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .reviews-number span  {
+            display: inline-block;
+            font-weight: 400;
+            vertical-align: top;
+            font-size: 16px;
+            color: rgb(0, 0, 0);
+            opacity: 0.4;
+            margin-left: 7px;
+        }
+        .positive {
+            color: rgb(48, 207, 127);
+        }
+        .negative {
+            color: rgb(207, 48, 48);
+        }
     </style>
 </head>
 <body>
@@ -393,42 +391,61 @@
         </article>
     </section>
 
-
     <p id="reviews" class="section-header">Reviews</p>
-    <section id="reviews-list">
-        <article id="first-review" class="review">
-            <div class="grade positive"><span>9/10</span></div>
-            <span class="date">21 December 2023</span>
-            <h1>Young at heartHth</h1>
-            <p>
-                For younger viewers, they might not understand the impact of "Shrek" on the film industry and CGI movies. However, being an older guy, I remember how groundbreaking and amazing the computer animation was when the film debuted. It was head and shoulders better than the few CGI movies that had come out in the previous decade...and it finally gave Pixar a serious run for the money. In addition, the plot was very adult...and the film's appeal was much greater than a typical CGI story. Great animation, great story telling and great voice acting, while the movie isn't quite impressive to see today, it still holds up very well and is well worth your time.
+    <section id="reviews-section">
+        <section id="reviews-list">
+            <article id="first-review" class="review">
+                <div class="grade positive"><span>9/10</span></div>
+                <span class="date">21 December 2023</span>
+                <h1>Young at heartHth</h1>
+                <p>
+                    For younger viewers, they might not understand the impact of "Shrek" on the film industry and CGI movies. However, being an older guy, I remember how groundbreaking and amazing the computer animation was when the film debuted. It was head and shoulders better than the few CGI movies that had come out in the previous decade...and it finally gave Pixar a serious run for the money. In addition, the plot was very adult...and the film's appeal was much greater than a typical CGI story. Great animation, great story telling and great voice acting, while the movie isn't quite impressive to see today, it still holds up very well and is well worth your time.
 
-                I could easily say more but this film has over a thousand reviews....so I'll just end it here!
-            </p>
-        </article>
-        <article class="review">
-            <div class="grade negative"><span>2/10</span></div>
-            <span class="date">25 December 2020</span>
-            <h1>Not for me</h1>
-            <p>
-                Barbie (Margot Robbie) travels from Barbieland to the real world where she learns to her surprise that men are in control...<br /><br />
+                    I could easily say more but this film has over a thousand reviews....so I'll just end it here!
+                </p>
+            </article>
 
-                I'm not a fan of this Barbie movie - regardless of whether I agree with its feminist message about the patriarchy or not, I just didn't find it funny and I didn't find it enjoyable. The humour was lame, I thought that the performances were weak (am I the only person who isn't a Margot Robbie fan?), and the songs were beyond awful.<br /><br />
+            <article class="review">
+                <div class="grade negative"><span>2/10</span></div>
+                <span class="date">25 December 2020</span>
+                <h1>Not for me</h1>
+                <p>
+                    Barbie (Margot Robbie) travels from Barbieland to the real world where she learns to her surprise that men are in control...<br /><br />
 
-                About the only thing that I can commend about the film is its production design, but even that got on my nerves from time to time (the travelling to the real world from Barbieland on cardboard cut-outs -- sheesh!). Obviously, I'm in the minority for not liking this film, because it has a high rating and has made a mint at the box office, but I guess we can't all like the same things.
-            </p>
-        </article>
-        <article class="review">
-            <div class="grade positive"><span>8/10</span></div>
-            <span class="date">1 January 2024</span>
-            <h1>Wonderfully Done</h1>
-            <p>
-                Barbie is very entertaining and despite the apparent artificiality, it questions social mandates. Throughout the film, a successful sense of humor is maintained regarding the struggle of the sexes and its cultural implications, without being offensive.
-            </p>
-        </article>
+                    I'm not a fan of this Barbie movie - regardless of whether I agree with its feminist message about the patriarchy or not, I just didn't find it funny and I didn't find it enjoyable. The humour was lame, I thought that the performances were weak (am I the only person who isn't a Margot Robbie fan?), and the songs were beyond awful.<br /><br />
+
+                    About the only thing that I can commend about the film is its production design, but even that got on my nerves from time to time (the travelling to the real world from Barbieland on cardboard cut-outs -- sheesh!). Obviously, I'm in the minority for not liking this film, because it has a high rating and has made a mint at the box office, but I guess we can't all like the same things.
+                </p>
+            </article>
+
+            <article class="review">
+                <div class="grade positive"><span>8/10</span></div>
+                <span class="date">1 January 2024</span>
+                <h1>Wonderfully Done</h1>
+                <p>
+                    Barbie is very entertaining and despite the apparent artificiality, it questions social mandates. Throughout the film, a successful sense of humor is maintained regarding the struggle of the sexes and its cultural implications, without being offensive.
+                </p>
+            </article>
+        </section>
+
+        <section class="reviews-summary">
+            <div class="score">
+                <div class="reviews-number">3</div>
+                <div class="caption">total</div>
+            </div>
+            <div class="score">
+                <div class="reviews-number positive">2<span>66,6%</span></div>
+                <div class="caption">positive</div>
+            </div>
+            <div class="score">
+                <div class="reviews-number negative">1<span>33,3%</span></div>
+                <div class="caption">negative</div>
+            </div>
+        </section>
+
     </section>
-
 
 </main>
 </body>
 </html>
+<!--459-->

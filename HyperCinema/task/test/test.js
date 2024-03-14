@@ -2,6 +2,14 @@ import path from 'path';
 const pagePath = path.join(import.meta.url, '../../src/index.html');
 import {StageTest, correct, wrong} from 'hs-test-web';
 
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
 function nonStrictCompare(a, b, offset) {
     if (!offset) {
         offset = 10;
@@ -95,13 +103,13 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Your page should contain 2 .section-header elements.`)
         }),
-        //Test 10 - check font section-header
+        //Test 10 - check font section-header //TODO
         this.page.execute(() => {
             let actorsHeaderStyles = window.getComputedStyle(this.actorsHeader[0]);
             let reviewsHeaderStyles = window.getComputedStyle(this.actorsHeader[1]);
             return actorsHeaderStyles.fontSize === '32px' && actorsHeaderStyles.fontWeight === '700' &&
-                actorsHeaderStyles.fontFamily.includes('Montserrat') && reviewsHeaderStyles.fontSize === "32px" &&
-                reviewsHeaderStyles.fontWeight === '700' && reviewsHeaderStyles.fontFamily.includes('Montserrat')?
+            actorsHeaderStyles.fontFamily.includes('Montserrat') && reviewsHeaderStyles.fontSize === "32px" &&
+            reviewsHeaderStyles.fontWeight === '700' && reviewsHeaderStyles.fontFamily.includes('Montserrat')?
                 correct() :
                 wrong(`Check font of .section-header elements.`)
         }),
@@ -133,7 +141,7 @@ class Test extends StageTest {
                 let arObj = document.querySelector('#actors-list article');
                 return [arObj.getBoundingClientRect().x, arObj.getBoundingClientRect().y];
             });
-            return arCoords[0] === 90 && nonStrictCompare(arCoords[1], 865) ?
+            return arCoords[0] === 90 && Math.abs(arCoords[1] - 865) < 10 ?
                 correct() :
                 wrong(`Check position of first article element. Now your project has the following values of first article element: 
                 x-coordinate=${arCoords[0]} and y-coordinate=${arCoords[1]}.`);
@@ -146,15 +154,7 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Your page must contain at least 3 reviews with 3 grades.`)
         }),
-        // Test 15 - check reviews-list article border
-        this.page.execute(() => {
-            let styles = window.getComputedStyle(this.articleObj[0]);
-
-            return styles.border === "1px solid rgb(0, 0, 0)" && styles.borderRadius === "10px" ?
-                correct() :
-                wrong(`Please, check borders of review article.`)
-        }),
-        // Test 16 - check position of first reviews-list article
+        // Test 15 - check position of first reviews-list article
         this.node.execute(async () => {
             let coords = await this.page.evaluate(async () => {
                 let obj = document.querySelector('#reviews-list article');
@@ -164,19 +164,7 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Please, check position of your first review, your positions now: x=${coords[0]} and ${coords[1]}.`)
         }),
-        // Test 17 - check position of second reviews-list article
-        this.node.execute(async () => {
-            let coords = await this.page.evaluate(async () => {
-                let obj = document.querySelectorAll('#reviews-list article')[1];
-                let obj0 = document.querySelectorAll('#reviews-list article')[0];
-                return [obj.getBoundingClientRect().x, obj.getBoundingClientRect().y, obj0.getBoundingClientRect().y, obj0.getBoundingClientRect().height];
-            });
-            return coords[0] === 90 && Math.round(coords[1] - coords[2] - coords[3]) === 40 ?
-                correct() :
-                wrong(`Please, check position of your second review. Now your project has the following values of second review element: 
-                x-coordinate=${coords[0]} and the distance between the second and first elements of the reviews is ${coords[1] - coords[2] - coords[3]}.`)
-        }),
-        // Test 18 - check size of first reviews-list article
+        // Test 16 - check size of first reviews-list article
         this.node.execute(async () => {
             let width = await this.page.evaluate(async () => {
                 let obj = document.querySelectorAll('#reviews-list article')[0];
@@ -186,94 +174,149 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Please check the width of the element with review, your width now - ${width}px.`)
         }),
-        // Test 19 - check position of first reviews-list article span
+        // Test 17 - check transform-animation of button
         this.node.execute(async () => {
-            let coords = await this.page.evaluate(async () => {
-                let obj = document.querySelector('#reviews-list article .date');
-                return obj ? [obj.getBoundingClientRect().x, obj.getBoundingClientRect().y] : [-1, -1];
-            });
-            return nonStrictCompare(coords[0], 130, 5) && nonStrictCompare(coords[1], 1392) ?
+            const button = await this.page.findBySelector('button');
+            await button.hover();
+            sleep(400);
+            const hoverButton = await this.page.findBySelector('button:hover');
+
+            let styles = [];
+            if(hoverButton) {
+                styles = await hoverButton.getComputedStyles();
+            }
+
+            return styles.transform === 'matrix(1, 0, 0, 1, 10, -10)' &&
+            styles.boxShadow === 'rgb(33, 33, 33) -10px 10px 0px 0px' ?
                 correct() :
-                wrong(`Please, check position of your first .date element, your position: x=${coords[0]} and y=${coords[1]}.`)
+                wrong(`Please check transform and box-shadow-animation after button hovering. Now you have transform=${styles.transform} and boxShadow=${styles.boxShadow} after hover.`)
         }),
-        // Test 20 - check position of first reviews-list article h1
+        // Test 18 - check time of transform-animation of button
         this.node.execute(async () => {
-            let coords = await this.page.evaluate(async () => {
-                let obj = document.querySelector('#reviews-list article h1');
-                return obj ? [obj.getBoundingClientRect().x, obj.getBoundingClientRect().y] : [-1, -1];
-            });
-            return nonStrictCompare(coords[0], 130, 5) && nonStrictCompare(coords[1], 1435) ?
+            const b = await this.page.findAllBySelector('button');
+            const button = b[1];
+            await button.hover();
+            const hoverButton = await this.page.findBySelector('button:hover');
+
+            let styles = [];
+            if(hoverButton) {
+                styles = await hoverButton.getComputedStyles();
+            }
+            return styles.transform !== 'matrix(1, 0, 0, 1, 10, -10)' &&
+            styles.boxShadow !== 'rgb(33, 33, 33) -10px 10px 0px 0px' ?
                 correct() :
-                wrong(`Please, check position of your first h1 element of article, your position - x=${coords[0]} and y=${coords[1]}.`)
+                wrong(`Please check time of animation after button hovering.`)
         }),
-        // Test 21 - check position of first reviews-list article p
+        // Test 19 - check animation of actor
         this.node.execute(async () => {
-            let coords = await this.page.evaluate(async () => {
-                let obj = document.querySelector('#reviews-list article p');
-                return obj ? [obj.getBoundingClientRect().x, obj.getBoundingClientRect().y] : [-1, -1];
-            });
-            return nonStrictCompare(coords[0], 130, 5) && nonStrictCompare(coords[1], 1480, 15) ?
+            const actor = await this.page.findBySelector('#actors-list article');
+            await actor.hover();
+            sleep(400);
+            const hoverButton = await this.page.findBySelector('#actors-list article:hover');
+
+            let styles = null;
+            if (hoverButton) styles = await hoverButton.getComputedStyles();
+
+            let isTransform = false;
+            let isBoxShadow = false;
+            if (styles) {
+                let transformMatch = styles.transform.match(/matrix\(1, 0, 0, 1, (?<first>.+), (?<second>.+)\)/);
+                if(transformMatch) {
+                    isTransform = transformMatch.groups.first && Math.round(transformMatch.groups.first) === 10 &&
+                        transformMatch.groups.second && Math.round(transformMatch.groups.second) === -10;
+                }
+
+                let boxShadowMatch = styles.boxShadow.match(/rgb\(33, 33, 33\) (?<first>.+)px (?<second>.+)px 0px 0px/);
+                if(boxShadowMatch) {
+                    isBoxShadow = boxShadowMatch.groups.first && Math.round(boxShadowMatch.groups.first) === -10 &&
+                        boxShadowMatch.groups.second && Math.round(boxShadowMatch.groups.second) === 10;
+                }
+            }
+            let errorString = `Please check transform and box-shadow-animation after actor hovering.`;
+            if (!styles) {
+                errorString += ` The test script cannot find the <#actors-list article:hover> element after focusing on the button :(`;
+            }
+            return isTransform && isBoxShadow ?
                 correct() :
-                wrong(`Please, check position of your first p element of article, your position - x=${coords[0]} and y=${coords[1]}.`)
+                wrong(errorString)
         }),
-        // Test 22 - check fonts of all elements of article
+
+        // Test 20 - check summary
         this.page.execute(() => {
-            let date = window.getComputedStyle(document.querySelector('#reviews-list article .date'));
-            let h1Obj = window.getComputedStyle(document.querySelector('#reviews-list article h1'));
-            let pObj = window.getComputedStyle(document.querySelector('#reviews-list article p'));
+            this.summary = document.querySelector('.reviews-summary');
 
-            let dateOk = date.fontWeight === '300' && date.fontSize === '14px' && date.opacity === '0.6';
-            let h1Ok = h1Obj.fontWeight === '600' && h1Obj.fontSize === '24px';
-            let pOk = pObj.fontWeight === '400' && pObj.fontSize === '18px';
-
-            return dateOk && h1Ok && pOk ?
+            return this.summary ?
                 correct() :
-                wrong(`Check fonts of all elements of review article.`)
+                wrong(`Your page should contain .reviews-summary element.`)
         }),
-
-        // Test 23 - check position of first reviews-list article grade
-        this.node.execute(async () => {
-            let coords = await this.page.evaluate(async () => {
-                let obj = document.querySelector('#reviews-list article .grade');
-                return obj ? [obj.getBoundingClientRect().x, obj.getBoundingClientRect().y] : [-1, -1];
-            });
-            return nonStrictCompare(coords[0], 915, 5) && nonStrictCompare(coords[1], 1348) ?
-                correct() :
-                wrong(`Please, check position of your first .grade element of article, your position - x=${coords[0]} and y=${coords[1]}.`)
-        }),
-        // Test 24 - check background and fonts of first reviews-list article grade
+        // Test 21 - check border of summary
         this.page.execute(() => {
-            let styles = window.getComputedStyle(this.gradeObj[0]);
-            let spanStyle = window.getComputedStyle(document.querySelector('#reviews-list article .grade span'));
-            return styles.backgroundImage && styles.fontSize === '24px' && styles.fontWeight === '500' &&
-                spanStyle.fontSize === '14px' && spanStyle.fontWeight === '300' ?
+            let borderLeft = window.getComputedStyle(this.summary).borderLeft;
+            return  borderLeft === '2px solid rgb(0, 0, 0)' ?
                 correct() :
-                wrong(`Check fonts and background of grade element in article.`)
+                wrong(`Please, check left border of your summary element.`)
         }),
-        // Test 25 - check size of first reviews-list article grade
+        // Test 22 - check fonts of summary
+        this.page.execute(() => {
+            let rn = document.querySelector('.reviews-summary .reviews-number') ?
+                window.getComputedStyle(document.querySelector('.reviews-summary .reviews-number')) : [];
+            let rnp = document.querySelector('.reviews-summary .reviews-number.positive') ?
+                window.getComputedStyle(document.querySelector('.reviews-summary .reviews-number.positive')) : [];
+            let rnn = document.querySelector('.reviews-summary .reviews-number.negative') ?
+                window.getComputedStyle(document.querySelector('.reviews-summary .reviews-number.negative')) : [];
+            let rns = document.querySelector('.reviews-summary .reviews-number span') ?
+                window.getComputedStyle(document.querySelector('.reviews-summary .reviews-number span')) : [];
+
+            let caption = document.querySelector('.reviews-summary .caption') ?
+                window.getComputedStyle(document.querySelector('.reviews-summary .caption')) : [];
+
+            let flag = rn.fontSize === '30px' && rn.fontWeight === '500' && rn.color === 'rgb(0, 0, 0)' &&
+            rnp.color === 'rgb(48, 207, 127)' && rnn.color === 'rgb(207, 48, 48)' &&
+            rns.color === 'rgb(0, 0, 0)' && rns.fontSize === '16px' && rns.fontWeight === '400' && rns.opacity === '0.4' &&
+            caption.fontSize === '16px' && caption.fontWeight === '400';
+
+            return  flag ?
+                correct() :
+                wrong(`Please, check fonts of your summary element and child elements of it.`)
+        }),
+        // Test 23 - check internal positions of summary
         this.node.execute(async () => {
             let coords = await this.page.evaluate(async () => {
-                let obj = document.querySelector('#reviews-list article .grade');
-                return obj ? [obj.getBoundingClientRect().width, obj.getBoundingClientRect().height] : [-1, -1];
+                let summary = document.querySelector('.reviews-summary') ?
+                    document.querySelector('.reviews-summary').getBoundingClientRect() : [];
+                let rn1 = document.querySelectorAll('.reviews-summary .reviews-number')[0] ?
+                    document.querySelectorAll('.reviews-summary .reviews-number')[0].getBoundingClientRect() : [];
+                let rn2 = document.querySelectorAll('.reviews-summary .reviews-number')[1] ?
+                    document.querySelectorAll('.reviews-summary .reviews-number')[1].getBoundingClientRect() : [];
+
+                let caption1 = document.querySelectorAll('.reviews-summary .caption')[0] ?
+                    document.querySelectorAll('.reviews-summary .caption')[0].getBoundingClientRect() : [];
+                return [rn1.x, rn1.y-summary.y, rn2.x, rn2.y-summary.y, caption1.x, caption1.y-summary.y];
             });
-            return coords[0] === 72 && coords[1] === 93 ?
+            return nonStrictCompare(coords[0], 1189) && coords[2] === coords[0] && coords[4] === coords[0] &&
+                nonStrictCompare(coords[1], 15, 6) && nonStrictCompare(coords[3], 102, 5)
+                && nonStrictCompare(coords[5], 51, 5)
+                ?
                 correct() :
-                wrong(`Please, check size of article grade. Now your project has the following values of first reviews-list article grade: 
-                width=${coords[0]} and height=${coords[1]}.`)
+                wrong(`Please, check internal positions of your .review-summary element.`)
         }),
 
-        //Test 27 - check click on reviews-button
+        // Test 24 - check sticky position of summary
         this.node.execute(async () => {
-            await this.page.setViewport({width: 1440, height: 1200});
-            const reviewsButton = await this.page.findAllBySelector('button');
-            await reviewsButton[1].click();
-            let scrollTop = await this.page.evaluate(async () => {
-                return document.querySelectorAll('.section-header')[1].getBoundingClientRect().y;
+            const reviews = await this.page.findBySelector('#reviews-list');
+            const styles = await reviews.getComputedStyles();
+            let height = parseInt(styles.height.slice(0, -2)) / 2;
+            await this.page.setViewport({width: 1440, height: Math.round(height)});
+            const positions = await this.page.evaluate(async () => {
+                let y1 = document.querySelector('.reviews-summary') ? document.querySelector('.reviews-summary').getBoundingClientRect().y : [];
+                window.scrollTo(0, document.body.scrollHeight);
+                let y2 = document.querySelector('.reviews-summary') ? document.querySelector('.reviews-summary').getBoundingClientRect().y : [];
+                return [y1, y2];
             });
-            return  Math.round(scrollTop) === 0 ?
+            return nonStrictCompare(positions[0], 1348) && Math.abs(positions[1]) < 5 ?
                 correct() :
-                wrong(`Make sure you don't forget to add a scroll to the reviews section when you click on the "Reviews" button`);
-        }),
+                wrong('Your summary element should "stick" to the top of the page when you scroll down.');
+        })
     ]
 
 }
